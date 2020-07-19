@@ -1,0 +1,51 @@
+entity Operator{
+	externalId String
+    name String
+}
+
+entity OperatorWorkShift{
+	location String
+    startDate Instant
+    endDate Instant
+}
+
+entity Device{
+	registrationId String
+}
+
+entity Message{
+	subject String
+    content String
+    status MessageStatus
+}
+
+enum MessageStatus{
+	ACKNOLEDGE, IGNORE, NEW
+}
+
+relationship OneToOne {
+	OperatorWorkShift{device} to Device
+    OperatorWorkShift{operator} to Operator
+}
+
+// defining multiple OneToMany relationships with comments
+relationship OneToMany {
+	OperatorWorkShift to Message{operatorWorkShift},
+}
+
+
+///////////////////////////////////////////////
+
+
+// Set pagination options
+paginate Message with infinite-scroll
+paginate Operator, Device, OperatorWorkShift with pagination
+
+// Use Data Transfert Objects (DTO)
+// dto * with mapstruct
+
+// Set service options to all except few
+//service all with serviceImpl 
+
+// Set an angular suffix
+// angularSuffix * with mySuffix
