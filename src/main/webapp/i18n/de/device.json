@@ -1,0 +1,22 @@
+{
+  "ifmSimple1App": {
+    "device": {
+      "home": {
+        "title": "Devices",
+        "createLabel": "Device erstellen",
+        "createOrEditLabel": "Device erstellen oder bearbeiten",
+        "notFound": "No Devices found"
+      },
+      "created": "Device erstellt mit ID {{ param }}",
+      "updated": "Device aktualisiert mit ID {{ param }}",
+      "deleted": "Device gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Device {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Device"
+      },
+      "registrationId": "Registration Id"
+    }
+  }
+}

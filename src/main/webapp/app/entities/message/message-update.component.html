@@ -1,0 +1,55 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="bpf-message-heading" jhiTranslate="ifmSimple1App.message.home.createOrEditLabel">Create or edit a Message</h2>
+
+            <div>
+                <bpf-alert-error></bpf-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ifmSimple1App.message.subject" for="field_subject">Subject</label>
+                    <input type="text" class="form-control" name="subject" id="field_subject"
+                           formControlName="subject"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ifmSimple1App.message.content" for="field_content">Content</label>
+                    <input type="text" class="form-control" name="content" id="field_content"
+                           formControlName="content"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ifmSimple1App.message.status" for="field_status">Status</label>
+                    <select class="form-control" name="status" formControlName="status" id="field_status">
+                        <option value="ACKNOLEDGE">{{ 'ifmSimple1App.MessageStatus.ACKNOLEDGE' | translate }}</option>
+                        <option value="IGNORE">{{ 'ifmSimple1App.MessageStatus.IGNORE' | translate }}</option>
+                        <option value="NEW">{{ 'ifmSimple1App.MessageStatus.NEW' | translate }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ifmSimple1App.message.operatorWorkShift" for="field_operatorWorkShift">Operator Work Shift</label>
+                    <select class="form-control" id="field_operatorWorkShift" name="operatorWorkShift" formControlName="operatorWorkShiftId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="operatorWorkShiftOption.id" *ngFor="let operatorWorkShiftOption of operatorworkshifts; trackBy: trackById">{{ operatorWorkShiftOption.id }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

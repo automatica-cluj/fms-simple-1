@@ -1,0 +1,34 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="operator">
+            <h2><span jhiTranslate="ifmSimple1App.operator.detail.title">Operator</span> {{ operator.id }}</h2>
+
+            <hr>
+
+            <bpf-alert-error></bpf-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="ifmSimple1App.operator.externalId">External Id</span></dt>
+                <dd>
+                    <span>{{ operator.externalId }}</span>
+                </dd>
+                <dt><span jhiTranslate="ifmSimple1App.operator.name">Name</span></dt>
+                <dd>
+                    <span>{{ operator.name }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/operator', operator.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

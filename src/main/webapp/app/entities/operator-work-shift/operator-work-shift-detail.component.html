@@ -1,0 +1,50 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="operatorWorkShift">
+            <h2><span jhiTranslate="ifmSimple1App.operatorWorkShift.detail.title">Operator Work Shift</span> {{ operatorWorkShift.id }}</h2>
+
+            <hr>
+
+            <bpf-alert-error></bpf-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="ifmSimple1App.operatorWorkShift.location">Location</span></dt>
+                <dd>
+                    <span>{{ operatorWorkShift.location }}</span>
+                </dd>
+                <dt><span jhiTranslate="ifmSimple1App.operatorWorkShift.startDate">Start Date</span></dt>
+                <dd>
+                    <span>{{ operatorWorkShift.startDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="ifmSimple1App.operatorWorkShift.endDate">End Date</span></dt>
+                <dd>
+                    <span>{{ operatorWorkShift.endDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="ifmSimple1App.operatorWorkShift.device">Device</span></dt>
+                <dd>
+                    <div *ngIf="operatorWorkShift.deviceId">
+                        <a [routerLink]="['/device', operatorWorkShift.deviceId, 'view']">{{ operatorWorkShift.deviceId }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="ifmSimple1App.operatorWorkShift.operator">Operator</span></dt>
+                <dd>
+                    <div *ngIf="operatorWorkShift.operatorId">
+                        <a [routerLink]="['/operator', operatorWorkShift.operatorId, 'view']">{{ operatorWorkShift.operatorId }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/operator-work-shift', operatorWorkShift.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
