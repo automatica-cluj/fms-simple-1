@@ -1,0 +1,70 @@
+application {
+  config {
+    baseName ifm_simple_1
+    applicationType monolith
+    packageName ro.hmihai.fms
+    authenticationType jwt
+    buildTool gradle
+    databaseType sql
+    devDatabaseType h2Disk
+    prodDatabaseType postgresql
+    cacheProvider ehcache
+    enableHibernateCache true
+    clientFramework angularX
+    useSass false
+    clientPackageManager npm
+    jhiPrefix bpf
+    enableTranslation true
+    nativeLanguage en
+    languages [en, de]
+    websocket spring-websocket
+    testFrameworks [protractor]
+  }
+  entities *
+}
+
+entity Operator{
+	externalId String
+    name String
+}
+
+entity OperatorWorkShift{
+	location String
+    startDate Instant
+    endDate Instant
+}
+
+entity Device{
+	registrationId String
+}
+
+entity Message{
+	subject String
+    content String
+    status MessageStatus
+}
+
+enum MessageStatus{
+	ACKNOLEDGE, IGNORE, NEW
+}
+
+relationship OneToOne {
+	OperatorWorkShift{device} to Device
+    OperatorWorkShift{operator} to Operator
+}
+
+// defining multiple OneToMany relationships with comments
+relationship OneToMany {
+	OperatorWorkShift to Message{operatorWorkShift},
+}
+
+
+///////////////////////////////////////////////
+
+
+// Set pagination options
+paginate Message with infinite-scroll
+paginate Operator, Device, OperatorWorkShift with pagination
+
+service * with serviceImpl
+dto * with mapstruct
