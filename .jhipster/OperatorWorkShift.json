@@ -1,0 +1,52 @@
+{
+  "name": "OperatorWorkShift",
+  "fields": [
+    {
+      "fieldName": "location",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "startDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "endDate",
+      "fieldType": "Instant"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "device",
+      "otherEntityRelationshipName": "operatorWorkShift",
+      "relationshipName": "device",
+      "otherEntityField": "id",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "operator",
+      "otherEntityRelationshipName": "operatorWorkShift",
+      "relationshipName": "operator",
+      "otherEntityField": "id",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "message",
+      "otherEntityRelationshipName": "operatorWorkShift",
+      "relationshipName": "message"
+    }
+  ],
+  "changelogDate": "20200719202624",
+  "entityTableName": "operator_work_shift",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": ["ifm_simple_1"]
+}

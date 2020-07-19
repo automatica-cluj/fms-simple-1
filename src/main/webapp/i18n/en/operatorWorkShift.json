@@ -1,0 +1,27 @@
+{
+  "ifmSimple1App": {
+    "operatorWorkShift": {
+      "home": {
+        "title": "Operator Work Shifts",
+        "createLabel": "Create a new Operator Work Shift",
+        "createOrEditLabel": "Create or edit a Operator Work Shift",
+        "notFound": "No Operator Work Shifts found"
+      },
+      "created": "A new Operator Work Shift is created with identifier {{ param }}",
+      "updated": "A Operator Work Shift is updated with identifier {{ param }}",
+      "deleted": "A Operator Work Shift is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Operator Work Shift {{ id }}?"
+      },
+      "detail": {
+        "title": "Operator Work Shift"
+      },
+      "location": "Location",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "device": "Device",
+      "operator": "Operator",
+      "message": "Message"
+    }
+  }
+}

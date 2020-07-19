@@ -1,0 +1,27 @@
+{
+  "ifmSimple1App": {
+    "operatorWorkShift": {
+      "home": {
+        "title": "Operator Work Shifts",
+        "createLabel": "Operator Work Shift erstellen",
+        "createOrEditLabel": "Operator Work Shift erstellen oder bearbeiten",
+        "notFound": "No Operator Work Shifts found"
+      },
+      "created": "Operator Work Shift erstellt mit ID {{ param }}",
+      "updated": "Operator Work Shift aktualisiert mit ID {{ param }}",
+      "deleted": "Operator Work Shift gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Operator Work Shift {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Operator Work Shift"
+      },
+      "location": "Location",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "device": "Device",
+      "operator": "Operator",
+      "message": "Message"
+    }
+  }
+}

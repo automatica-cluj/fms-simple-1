@@ -1,0 +1,23 @@
+{
+  "ifmSimple1App": {
+    "operator": {
+      "home": {
+        "title": "Operators",
+        "createLabel": "Operator erstellen",
+        "createOrEditLabel": "Operator erstellen oder bearbeiten",
+        "notFound": "No Operators found"
+      },
+      "created": "Operator erstellt mit ID {{ param }}",
+      "updated": "Operator aktualisiert mit ID {{ param }}",
+      "deleted": "Operator gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Operator {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Operator"
+      },
+      "externalId": "External Id",
+      "name": "Name"
+    }
+  }
+}

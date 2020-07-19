@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <!--
+        Added the constraints for entity OperatorWorkShift.
+    -->
+    <changeSet id="20200719202624-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="device_id"
+                                 baseTableName="operator_work_shift"
+                                 constraintName="fk_operator_work_shift_device_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="device"/>
+
+        <addForeignKeyConstraint baseColumnNames="operator_id"
+                                 baseTableName="operator_work_shift"
+                                 constraintName="fk_operator_work_shift_operator_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="operator"/>
+
+    </changeSet>
+</databaseChangeLog>

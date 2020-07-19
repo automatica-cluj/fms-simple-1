@@ -1,0 +1,10 @@
+{
+  "ifmSimple1App": {
+    "MessageStatus": {
+      "null": "",
+      "ACKNOLEDGE": "ACKNOLEDGE",
+      "IGNORE": "IGNORE",
+      "NEW": "NEW"
+    }
+  }
+}

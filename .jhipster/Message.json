@@ -1,0 +1,38 @@
+{
+  "name": "Message",
+  "fields": [
+    {
+      "fieldName": "subject",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "content",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "MessageStatus",
+      "fieldValues": "ACKNOLEDGE,IGNORE,NEW"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "operatorWorkShift",
+      "otherEntityRelationshipName": "message",
+      "relationshipName": "operatorWorkShift",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20200719202824",
+  "entityTableName": "message",
+  "dto": "mapstruct",
+  "pagination": "infinite-scroll",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": ["ifm_simple_1"]
+}
