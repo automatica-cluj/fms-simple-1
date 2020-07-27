@@ -1,0 +1,23 @@
+{
+  "ifmSimple1App": {
+    "productionArea": {
+      "home": {
+        "title": "Production Areas",
+        "createLabel": "Production Area erstellen",
+        "createOrEditLabel": "Production Area erstellen oder bearbeiten",
+        "notFound": "No Production Areas found"
+      },
+      "created": "Production Area erstellt mit ID {{ param }}",
+      "updated": "Production Area aktualisiert mit ID {{ param }}",
+      "deleted": "Production Area gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Production Area {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Production Area"
+      },
+      "name": "Name",
+      "operatorWorkShift": "Operator Work Shift"
+    }
+  }
+}

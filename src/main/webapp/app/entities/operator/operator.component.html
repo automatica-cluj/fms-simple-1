@@ -23,7 +23,6 @@
             <thead>
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
                     <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="externalId"><span jhiTranslate="ifmSimple1App.operator.externalId">External Id</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="name"><span jhiTranslate="ifmSimple1App.operator.name">Name</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
@@ -31,7 +30,6 @@
             <tbody>
                 <tr *ngFor="let operator of operators ;trackBy: trackId">
                     <td><a [routerLink]="['/operator', operator.id, 'view']">{{ operator.id }}</a></td>
-                    <td>{{ operator.externalId }}</td>
                     <td>{{ operator.name }}</td>
                     <td class="text-right">
                         <div class="btn-group">

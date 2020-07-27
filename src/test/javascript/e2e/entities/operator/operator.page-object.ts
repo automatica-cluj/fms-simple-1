@@ -29,19 +29,10 @@ export class OperatorUpdatePage {
   saveButton = element(by.id('save-entity'));
   cancelButton = element(by.id('cancel-save'));
 
-  externalIdInput = element(by.id('field_externalId'));
   nameInput = element(by.id('field_name'));
 
   async getPageTitle(): Promise<string> {
     return this.pageTitle.getAttribute('jhiTranslate');
-  }
-
-  async setExternalIdInput(externalId: string): Promise<void> {
-    await this.externalIdInput.sendKeys(externalId);
-  }
-
-  async getExternalIdInput(): Promise<string> {
-    return await this.externalIdInput.getAttribute('value');
   }
 
   async setNameInput(name: string): Promise<void> {

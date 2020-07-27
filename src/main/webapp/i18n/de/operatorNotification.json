@@ -1,0 +1,26 @@
+{
+  "ifmSimple1App": {
+    "operatorNotification": {
+      "home": {
+        "title": "Operator Notifications",
+        "createLabel": "Operator Notification erstellen",
+        "createOrEditLabel": "Operator Notification erstellen oder bearbeiten",
+        "notFound": "No Operator Notifications found"
+      },
+      "created": "Operator Notification erstellt mit ID {{ param }}",
+      "updated": "Operator Notification aktualisiert mit ID {{ param }}",
+      "deleted": "Operator Notification gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Operator Notification {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Operator Notification"
+      },
+      "receiveDate": "Receive Date",
+      "responseDate": "Response Date",
+      "operatorResponse": "Operator Response",
+      "operatorWorkShift": "Operator Work Shift",
+      "factoryEvent": "Factory Event"
+    }
+  }
+}

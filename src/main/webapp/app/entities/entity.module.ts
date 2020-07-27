@@ -20,6 +20,23 @@ import { RouterModule } from '@angular/router';
         path: 'message',
         loadChildren: () => import('./message/message.module').then(m => m.IfmSimple1MessageModule),
       },
+      {
+        path: 'factory-event',
+        loadChildren: () => import('./factory-event/factory-event.module').then(m => m.IfmSimple1FactoryEventModule),
+      },
+      {
+        path: 'production-area',
+        loadChildren: () => import('./production-area/production-area.module').then(m => m.IfmSimple1ProductionAreaModule),
+      },
+      {
+        path: 'operator-device',
+        loadChildren: () => import('./operator-device/operator-device.module').then(m => m.IfmSimple1OperatorDeviceModule),
+      },
+      {
+        path: 'operator-notification',
+        loadChildren: () =>
+          import('./operator-notification/operator-notification.module').then(m => m.IfmSimple1OperatorNotificationModule),
+      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],

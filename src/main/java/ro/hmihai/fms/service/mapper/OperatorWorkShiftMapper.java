@@ -9,7 +9,7 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity {@link OperatorWorkShift} and its DTO {@link OperatorWorkShiftDTO}.
  */
-@Mapper(componentModel = "spring", uses = {DeviceMapper.class, OperatorMapper.class})
+@Mapper(componentModel = "spring", uses = {OperatorDeviceMapper.class, OperatorMapper.class})
 public interface OperatorWorkShiftMapper extends EntityMapper<OperatorWorkShiftDTO, OperatorWorkShift> {
 
     @Mapping(source = "device.id", target = "deviceId")
@@ -18,8 +18,10 @@ public interface OperatorWorkShiftMapper extends EntityMapper<OperatorWorkShiftD
 
     @Mapping(source = "deviceId", target = "device")
     @Mapping(source = "operatorId", target = "operator")
-    @Mapping(target = "messages", ignore = true)
-    @Mapping(target = "removeMessage", ignore = true)
+    @Mapping(target = "notifications", ignore = true)
+    @Mapping(target = "removeNotification", ignore = true)
+    @Mapping(target = "productionAreas", ignore = true)
+    @Mapping(target = "removeProductionArea", ignore = true)
     OperatorWorkShift toEntity(OperatorWorkShiftDTO operatorWorkShiftDTO);
 
     default OperatorWorkShift fromId(Long id) {

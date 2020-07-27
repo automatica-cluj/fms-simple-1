@@ -4,6 +4,7 @@ import * as moment from 'moment';
 import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
 import { OperatorWorkShiftService } from 'app/entities/operator-work-shift/operator-work-shift.service';
 import { IOperatorWorkShift, OperatorWorkShift } from 'app/shared/model/operator-work-shift.model';
+import { WorkShiftStatus } from 'app/shared/model/enumerations/work-shift-status.model';
 
 describe('Service Tests', () => {
   describe('OperatorWorkShift Service', () => {
@@ -24,7 +25,7 @@ describe('Service Tests', () => {
       httpMock = injector.get(HttpTestingController);
       currentDate = moment();
 
-      elemDefault = new OperatorWorkShift(0, 'AAAAAAA', currentDate, currentDate);
+      elemDefault = new OperatorWorkShift(0, currentDate, currentDate, WorkShiftStatus.ACTIVE);
     });
 
     describe('Service methods', () => {
@@ -72,9 +73,9 @@ describe('Service Tests', () => {
       it('should update a OperatorWorkShift', () => {
         const returnedFromService = Object.assign(
           {
-            location: 'BBBBBB',
             startDate: currentDate.format(DATE_TIME_FORMAT),
             endDate: currentDate.format(DATE_TIME_FORMAT),
+            status: 'BBBBBB',
           },
           elemDefault
         );
@@ -97,9 +98,9 @@ describe('Service Tests', () => {
       it('should return a list of OperatorWorkShift', () => {
         const returnedFromService = Object.assign(
           {
-            location: 'BBBBBB',
             startDate: currentDate.format(DATE_TIME_FORMAT),
             endDate: currentDate.format(DATE_TIME_FORMAT),
+            status: 'BBBBBB',
           },
           elemDefault
         );

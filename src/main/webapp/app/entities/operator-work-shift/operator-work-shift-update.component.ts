@@ -10,12 +10,12 @@ import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
 
 import { IOperatorWorkShift, OperatorWorkShift } from 'app/shared/model/operator-work-shift.model';
 import { OperatorWorkShiftService } from './operator-work-shift.service';
-import { IDevice } from 'app/shared/model/device.model';
-import { DeviceService } from 'app/entities/device/device.service';
+import { IOperatorDevice } from 'app/shared/model/operator-device.model';
+import { OperatorDeviceService } from 'app/entities/operator-device/operator-device.service';
 import { IOperator } from 'app/shared/model/operator.model';
 import { OperatorService } from 'app/entities/operator/operator.service';
 
-type SelectableEntity = IDevice | IOperator;
+type SelectableEntity = IOperatorDevice | IOperator;
 
 @Component({
   selector: 'bpf-operator-work-shift-update',
@@ -23,21 +23,21 @@ type SelectableEntity = IDevice | IOperator;
 })
 export class OperatorWorkShiftUpdateComponent implements OnInit {
   isSaving = false;
-  devices: IDevice[] = [];
+  devices: IOperatorDevice[] = [];
   operators: IOperator[] = [];
 
   editForm = this.fb.group({
     id: [],
-    location: [],
     startDate: [],
     endDate: [],
-    deviceId: [],
-    operatorId: [],
+    status: [],
+    deviceId: [null, Validators.required],
+    operatorId: [null, Validators.required],
   });
 
   constructor(
     protected operatorWorkShiftService: OperatorWorkShiftService,
-    protected deviceService: DeviceService,
+    protected operatorDeviceService: OperatorDeviceService,
     protected operatorService: OperatorService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
@@ -53,25 +53,25 @@ export class OperatorWorkShiftUpdateComponent implements OnInit {
 
       this.updateForm(operatorWorkShift);
 
-      this.deviceService
+      this.operatorDeviceService
         .query({ filter: 'operatorworkshift-is-null' })
         .pipe(
-          map((res: HttpResponse<IDevice[]>) => {
+          map((res: HttpResponse<IOperatorDevice[]>) => {
             return res.body || [];
           })
         )
-        .subscribe((resBody: IDevice[]) => {
+        .subscribe((resBody: IOperatorDevice[]) => {
           if (!operatorWorkShift.deviceId) {
             this.devices = resBody;
           } else {
-            this.deviceService
+            this.operatorDeviceService
               .find(operatorWorkShift.deviceId)
               .pipe(
-                map((subRes: HttpResponse<IDevice>) => {
+                map((subRes: HttpResponse<IOperatorDevice>) => {
                   return subRes.body ? [subRes.body].concat(resBody) : resBody;
                 })
               )
-              .subscribe((concatRes: IDevice[]) => (this.devices = concatRes));
+              .subscribe((concatRes: IOperatorDevice[]) => (this.devices = concatRes));
           }
         });
 
@@ -102,9 +102,9 @@ export class OperatorWorkShiftUpdateComponent implements OnInit {
   updateForm(operatorWorkShift: IOperatorWorkShift): void {
     this.editForm.patchValue({
       id: operatorWorkShift.id,
-      location: operatorWorkShift.location,
       startDate: operatorWorkShift.startDate ? operatorWorkShift.startDate.format(DATE_TIME_FORMAT) : null,
       endDate: operatorWorkShift.endDate ? operatorWorkShift.endDate.format(DATE_TIME_FORMAT) : null,
+      status: operatorWorkShift.status,
       deviceId: operatorWorkShift.deviceId,
       operatorId: operatorWorkShift.operatorId,
     });
@@ -128,9 +128,9 @@ export class OperatorWorkShiftUpdateComponent implements OnInit {
     return {
       ...new OperatorWorkShift(),
       id: this.editForm.get(['id'])!.value,
-      location: this.editForm.get(['location'])!.value,
       startDate: this.editForm.get(['startDate'])!.value ? moment(this.editForm.get(['startDate'])!.value, DATE_TIME_FORMAT) : undefined,
       endDate: this.editForm.get(['endDate'])!.value ? moment(this.editForm.get(['endDate'])!.value, DATE_TIME_FORMAT) : undefined,
+      status: this.editForm.get(['status'])!.value,
       deviceId: this.editForm.get(['deviceId'])!.value,
       operatorId: this.editForm.get(['operatorId'])!.value,
     };

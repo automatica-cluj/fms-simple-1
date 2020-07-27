@@ -1,0 +1,38 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="operatorDevice">
+            <h2><span jhiTranslate="ifmSimple1App.operatorDevice.detail.title">Operator Device</span> {{ operatorDevice.id }}</h2>
+
+            <hr>
+
+            <bpf-alert-error></bpf-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="ifmSimple1App.operatorDevice.name">Name</span></dt>
+                <dd>
+                    <span>{{ operatorDevice.name }}</span>
+                </dd>
+                <dt><span jhiTranslate="ifmSimple1App.operatorDevice.type">Type</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'ifmSimple1App.DeviceType.' + operatorDevice.type }}">{{ operatorDevice.type }}</span>
+                </dd>
+                <dt><span jhiTranslate="ifmSimple1App.operatorDevice.registrationId">Registration Id</span></dt>
+                <dd>
+                    <span>{{ operatorDevice.registrationId }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/operator-device', operatorDevice.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

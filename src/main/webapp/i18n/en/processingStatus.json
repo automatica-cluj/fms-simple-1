@@ -1,0 +1,12 @@
+{
+  "ifmSimple1App": {
+    "ProcessingStatus": {
+      "null": "",
+      "NEW": "NEW",
+      "WAIT_ACK": "WAIT_ACK",
+      "ACKNOWLEDGED": "ACKNOWLEDGED",
+      "IGNORED_ALL": "IGNORED_ALL",
+      "EXPIRED": "EXPIRED"
+    }
+  }
+}

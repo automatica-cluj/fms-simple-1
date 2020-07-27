@@ -1,0 +1,36 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="productionArea">
+            <h2><span jhiTranslate="ifmSimple1App.productionArea.detail.title">Production Area</span> {{ productionArea.id }}</h2>
+
+            <hr>
+
+            <bpf-alert-error></bpf-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="ifmSimple1App.productionArea.name">Name</span></dt>
+                <dd>
+                    <span>{{ productionArea.name }}</span>
+                </dd>
+                <dt><span jhiTranslate="ifmSimple1App.productionArea.operatorWorkShift">Operator Work Shift</span></dt>
+                <dd>
+                    <div *ngIf="productionArea.operatorWorkShiftId">
+                        <a [routerLink]="['/operator-work-shift', productionArea.operatorWorkShiftId, 'view']">{{ productionArea.operatorWorkShiftId }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/production-area', productionArea.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

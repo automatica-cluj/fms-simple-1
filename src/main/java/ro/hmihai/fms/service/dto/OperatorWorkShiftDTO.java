@@ -1,7 +1,9 @@
 package ro.hmihai.fms.service.dto;
 
 import java.time.Instant;
+import javax.validation.constraints.*;
 import java.io.Serializable;
+import ro.hmihai.fms.domain.enumeration.WorkShiftStatus;
 
 /**
  * A DTO for the {@link ro.hmihai.fms.domain.OperatorWorkShift} entity.
@@ -10,11 +12,11 @@ public class OperatorWorkShiftDTO implements Serializable {
     
     private Long id;
 
-    private String location;
-
     private Instant startDate;
 
     private Instant endDate;
+
+    private WorkShiftStatus status;
 
 
     private Long deviceId;
@@ -27,14 +29,6 @@ public class OperatorWorkShiftDTO implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
     }
 
     public Instant getStartDate() {
@@ -53,12 +47,20 @@ public class OperatorWorkShiftDTO implements Serializable {
         this.endDate = endDate;
     }
 
+    public WorkShiftStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(WorkShiftStatus status) {
+        this.status = status;
+    }
+
     public Long getDeviceId() {
         return deviceId;
     }
 
-    public void setDeviceId(Long deviceId) {
-        this.deviceId = deviceId;
+    public void setDeviceId(Long operatorDeviceId) {
+        this.deviceId = operatorDeviceId;
     }
 
     public Long getOperatorId() {
@@ -91,9 +93,9 @@ public class OperatorWorkShiftDTO implements Serializable {
     public String toString() {
         return "OperatorWorkShiftDTO{" +
             "id=" + getId() +
-            ", location='" + getLocation() + "'" +
             ", startDate='" + getStartDate() + "'" +
             ", endDate='" + getEndDate() + "'" +
+            ", status='" + getStatus() + "'" +
             ", deviceId=" + getDeviceId() +
             ", operatorId=" + getOperatorId() +
             "}";

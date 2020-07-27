@@ -9,8 +9,6 @@ public class OperatorDTO implements Serializable {
     
     private Long id;
 
-    private String externalId;
-
     private String name;
 
     
@@ -20,14 +18,6 @@ public class OperatorDTO implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getExternalId() {
-        return externalId;
-    }
-
-    public void setExternalId(String externalId) {
-        this.externalId = externalId;
     }
 
     public String getName() {
@@ -60,7 +50,6 @@ public class OperatorDTO implements Serializable {
     public String toString() {
         return "OperatorDTO{" +
             "id=" + getId() +
-            ", externalId='" + getExternalId() + "'" +
             ", name='" + getName() + "'" +
             "}";
     }

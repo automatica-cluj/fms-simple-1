@@ -7,7 +7,7 @@
     "serviceDiscoveryType": false,
     "skipUserManagement": false,
     "baseName": "ifm_simple_1",
-    "buildTool": "gradle",
+    "buildTool": "maven",
     "databaseType": "sql",
     "devDatabaseType": "h2Disk",
     "enableHibernateCache": true,
@@ -39,5 +39,5 @@
     "otherModules": [],
     "blueprints": []
   },
-  "entities": ["Operator", "OperatorWorkShift", "Device", "Message"]
+  "entities": ["FactoryEvent", "Operator", "ProductionArea", "OperatorWorkShift", "OperatorDevice", "OperatorNotification"]
 }

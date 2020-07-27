@@ -1,0 +1,50 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="operatorNotification">
+            <h2><span jhiTranslate="ifmSimple1App.operatorNotification.detail.title">Operator Notification</span> {{ operatorNotification.id }}</h2>
+
+            <hr>
+
+            <bpf-alert-error></bpf-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="ifmSimple1App.operatorNotification.receiveDate">Receive Date</span></dt>
+                <dd>
+                    <span>{{ operatorNotification.receiveDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="ifmSimple1App.operatorNotification.responseDate">Response Date</span></dt>
+                <dd>
+                    <span>{{ operatorNotification.responseDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="ifmSimple1App.operatorNotification.operatorResponse">Operator Response</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'ifmSimple1App.NotificationResponse.' + operatorNotification.operatorResponse }}">{{ operatorNotification.operatorResponse }}</span>
+                </dd>
+                <dt><span jhiTranslate="ifmSimple1App.operatorNotification.operatorWorkShift">Operator Work Shift</span></dt>
+                <dd>
+                    <div *ngIf="operatorNotification.operatorWorkShiftId">
+                        <a [routerLink]="['/operator-work-shift', operatorNotification.operatorWorkShiftId, 'view']">{{ operatorNotification.operatorWorkShiftId }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="ifmSimple1App.operatorNotification.factoryEvent">Factory Event</span></dt>
+                <dd>
+                    <div *ngIf="operatorNotification.factoryEventId">
+                        <a [routerLink]="['/factory-event', operatorNotification.factoryEventId, 'view']">{{ operatorNotification.factoryEventId }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/operator-notification', operatorNotification.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,77 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="ifmSimple1App.operatorNotification.home.title">Operator Notifications</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-operator-notification" [routerLink]="['/operator-notification/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="ifmSimple1App.operatorNotification.home.createLabel">
+            Create a new Operator Notification
+            </span>
+        </button>
+    </h2>
+
+    <bpf-alert-error></bpf-alert-error>
+
+    <bpf-alert></bpf-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="operatorNotifications?.length === 0">
+        <span jhiTranslate="ifmSimple1App.operatorNotification.home.notFound">No operatorNotifications found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="operatorNotifications && operatorNotifications.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="receiveDate"><span jhiTranslate="ifmSimple1App.operatorNotification.receiveDate">Receive Date</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="responseDate"><span jhiTranslate="ifmSimple1App.operatorNotification.responseDate">Response Date</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="operatorResponse"><span jhiTranslate="ifmSimple1App.operatorNotification.operatorResponse">Operator Response</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="operatorWorkShiftId"><span jhiTranslate="ifmSimple1App.operatorNotification.operatorWorkShift">Operator Work Shift</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="factoryEventId"><span jhiTranslate="ifmSimple1App.operatorNotification.factoryEvent">Factory Event</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+                <tr *ngFor="let operatorNotification of operatorNotifications ;trackBy: trackId">
+                    <td><a [routerLink]="['/operator-notification', operatorNotification.id, 'view']">{{ operatorNotification.id }}</a></td>
+                    <td>{{ operatorNotification.receiveDate | date:'medium' }}</td>
+                    <td>{{ operatorNotification.responseDate | date:'medium' }}</td>
+                    <td jhiTranslate="{{ 'ifmSimple1App.NotificationResponse.' + operatorNotification.operatorResponse }}">{{ operatorNotification.operatorResponse }}</td>
+                    <td>
+                        <div *ngIf="operatorNotification.operatorWorkShiftId">
+                            <a [routerLink]="['/operator-work-shift', operatorNotification.operatorWorkShiftId , 'view']" >{{ operatorNotification.operatorWorkShiftId }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="operatorNotification.factoryEventId">
+                            <a [routerLink]="['/factory-event', operatorNotification.factoryEventId , 'view']" >{{ operatorNotification.factoryEventId }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/operator-notification', operatorNotification.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/operator-notification', operatorNotification.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(operatorNotification)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

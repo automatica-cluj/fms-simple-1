@@ -1,0 +1,63 @@
+{
+  "name": "FactoryEvent",
+  "fields": [
+    {
+      "fieldName": "subject",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "body",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "EventType",
+      "fieldValues": "MACHINE_EVENT,USER_MESSAGE"
+    },
+    {
+      "fieldName": "createDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "notificationCount",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "nextNotificationDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "processingStatus",
+      "fieldType": "ProcessingStatus",
+      "fieldValues": "NEW,WAIT_ACK,ACKNOWLEDGED,IGNORED_ALL,EXPIRED"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "productionArea",
+      "otherEntityRelationshipName": "factoryEvent",
+      "relationshipValidateRules": "required",
+      "relationshipName": "productionArea",
+      "otherEntityField": "id",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "operatorNotification",
+      "otherEntityRelationshipName": "factoryEvent",
+      "relationshipName": "notification"
+    }
+  ],
+  "changelogDate": "20200727121006",
+  "entityTableName": "factory_event",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": ["ifm_simple_1"]
+}

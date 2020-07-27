@@ -2,6 +2,8 @@ package ro.hmihai.fms.web.rest;
 
 import ro.hmihai.fms.IfmSimple1App;
 import ro.hmihai.fms.domain.OperatorWorkShift;
+import ro.hmihai.fms.domain.OperatorDevice;
+import ro.hmihai.fms.domain.Operator;
 import ro.hmihai.fms.repository.OperatorWorkShiftRepository;
 import ro.hmihai.fms.service.OperatorWorkShiftService;
 import ro.hmihai.fms.service.dto.OperatorWorkShiftDTO;
@@ -26,6 +28,7 @@ import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import ro.hmihai.fms.domain.enumeration.WorkShiftStatus;
 /**
  * Integration tests for the {@link OperatorWorkShiftResource} REST controller.
  */
@@ -34,14 +37,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WithMockUser
 public class OperatorWorkShiftResourceIT {
 
-    private static final String DEFAULT_LOCATION = "AAAAAAAAAA";
-    private static final String UPDATED_LOCATION = "BBBBBBBBBB";
-
     private static final Instant DEFAULT_START_DATE = Instant.ofEpochMilli(0L);
     private static final Instant UPDATED_START_DATE = Instant.now().truncatedTo(ChronoUnit.MILLIS);
 
     private static final Instant DEFAULT_END_DATE = Instant.ofEpochMilli(0L);
     private static final Instant UPDATED_END_DATE = Instant.now().truncatedTo(ChronoUnit.MILLIS);
+
+    private static final WorkShiftStatus DEFAULT_STATUS = WorkShiftStatus.ACTIVE;
+    private static final WorkShiftStatus UPDATED_STATUS = WorkShiftStatus.ENDED;
 
     @Autowired
     private OperatorWorkShiftRepository operatorWorkShiftRepository;
@@ -68,9 +71,29 @@ public class OperatorWorkShiftResourceIT {
      */
     public static OperatorWorkShift createEntity(EntityManager em) {
         OperatorWorkShift operatorWorkShift = new OperatorWorkShift()
-            .location(DEFAULT_LOCATION)
             .startDate(DEFAULT_START_DATE)
-            .endDate(DEFAULT_END_DATE);
+            .endDate(DEFAULT_END_DATE)
+            .status(DEFAULT_STATUS);
+        // Add required entity
+        OperatorDevice operatorDevice;
+        if (TestUtil.findAll(em, OperatorDevice.class).isEmpty()) {
+            operatorDevice = OperatorDeviceResourceIT.createEntity(em);
+            em.persist(operatorDevice);
+            em.flush();
+        } else {
+            operatorDevice = TestUtil.findAll(em, OperatorDevice.class).get(0);
+        }
+        operatorWorkShift.setDevice(operatorDevice);
+        // Add required entity
+        Operator operator;
+        if (TestUtil.findAll(em, Operator.class).isEmpty()) {
+            operator = OperatorResourceIT.createEntity(em);
+            em.persist(operator);
+            em.flush();
+        } else {
+            operator = TestUtil.findAll(em, Operator.class).get(0);
+        }
+        operatorWorkShift.setOperator(operator);
         return operatorWorkShift;
     }
     /**
@@ -81,9 +104,29 @@ public class OperatorWorkShiftResourceIT {
      */
     public static OperatorWorkShift createUpdatedEntity(EntityManager em) {
         OperatorWorkShift operatorWorkShift = new OperatorWorkShift()
-            .location(UPDATED_LOCATION)
             .startDate(UPDATED_START_DATE)
-            .endDate(UPDATED_END_DATE);
+            .endDate(UPDATED_END_DATE)
+            .status(UPDATED_STATUS);
+        // Add required entity
+        OperatorDevice operatorDevice;
+        if (TestUtil.findAll(em, OperatorDevice.class).isEmpty()) {
+            operatorDevice = OperatorDeviceResourceIT.createUpdatedEntity(em);
+            em.persist(operatorDevice);
+            em.flush();
+        } else {
+            operatorDevice = TestUtil.findAll(em, OperatorDevice.class).get(0);
+        }
+        operatorWorkShift.setDevice(operatorDevice);
+        // Add required entity
+        Operator operator;
+        if (TestUtil.findAll(em, Operator.class).isEmpty()) {
+            operator = OperatorResourceIT.createUpdatedEntity(em);
+            em.persist(operator);
+            em.flush();
+        } else {
+            operator = TestUtil.findAll(em, Operator.class).get(0);
+        }
+        operatorWorkShift.setOperator(operator);
         return operatorWorkShift;
     }
 
@@ -107,9 +150,9 @@ public class OperatorWorkShiftResourceIT {
         List<OperatorWorkShift> operatorWorkShiftList = operatorWorkShiftRepository.findAll();
         assertThat(operatorWorkShiftList).hasSize(databaseSizeBeforeCreate + 1);
         OperatorWorkShift testOperatorWorkShift = operatorWorkShiftList.get(operatorWorkShiftList.size() - 1);
-        assertThat(testOperatorWorkShift.getLocation()).isEqualTo(DEFAULT_LOCATION);
         assertThat(testOperatorWorkShift.getStartDate()).isEqualTo(DEFAULT_START_DATE);
         assertThat(testOperatorWorkShift.getEndDate()).isEqualTo(DEFAULT_END_DATE);
+        assertThat(testOperatorWorkShift.getStatus()).isEqualTo(DEFAULT_STATUS);
     }
 
     @Test
@@ -144,9 +187,9 @@ public class OperatorWorkShiftResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(operatorWorkShift.getId().intValue())))
-            .andExpect(jsonPath("$.[*].location").value(hasItem(DEFAULT_LOCATION)))
             .andExpect(jsonPath("$.[*].startDate").value(hasItem(DEFAULT_START_DATE.toString())))
-            .andExpect(jsonPath("$.[*].endDate").value(hasItem(DEFAULT_END_DATE.toString())));
+            .andExpect(jsonPath("$.[*].endDate").value(hasItem(DEFAULT_END_DATE.toString())))
+            .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())));
     }
     
     @Test
@@ -160,9 +203,9 @@ public class OperatorWorkShiftResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(operatorWorkShift.getId().intValue()))
-            .andExpect(jsonPath("$.location").value(DEFAULT_LOCATION))
             .andExpect(jsonPath("$.startDate").value(DEFAULT_START_DATE.toString()))
-            .andExpect(jsonPath("$.endDate").value(DEFAULT_END_DATE.toString()));
+            .andExpect(jsonPath("$.endDate").value(DEFAULT_END_DATE.toString()))
+            .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()));
     }
     @Test
     @Transactional
@@ -185,9 +228,9 @@ public class OperatorWorkShiftResourceIT {
         // Disconnect from session so that the updates on updatedOperatorWorkShift are not directly saved in db
         em.detach(updatedOperatorWorkShift);
         updatedOperatorWorkShift
-            .location(UPDATED_LOCATION)
             .startDate(UPDATED_START_DATE)
-            .endDate(UPDATED_END_DATE);
+            .endDate(UPDATED_END_DATE)
+            .status(UPDATED_STATUS);
         OperatorWorkShiftDTO operatorWorkShiftDTO = operatorWorkShiftMapper.toDto(updatedOperatorWorkShift);
 
         restOperatorWorkShiftMockMvc.perform(put("/api/operator-work-shifts")
@@ -199,9 +242,9 @@ public class OperatorWorkShiftResourceIT {
         List<OperatorWorkShift> operatorWorkShiftList = operatorWorkShiftRepository.findAll();
         assertThat(operatorWorkShiftList).hasSize(databaseSizeBeforeUpdate);
         OperatorWorkShift testOperatorWorkShift = operatorWorkShiftList.get(operatorWorkShiftList.size() - 1);
-        assertThat(testOperatorWorkShift.getLocation()).isEqualTo(UPDATED_LOCATION);
         assertThat(testOperatorWorkShift.getStartDate()).isEqualTo(UPDATED_START_DATE);
         assertThat(testOperatorWorkShift.getEndDate()).isEqualTo(UPDATED_END_DATE);
+        assertThat(testOperatorWorkShift.getStatus()).isEqualTo(UPDATED_STATUS);
     }
 
     @Test

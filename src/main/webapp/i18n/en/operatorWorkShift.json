@@ -16,12 +16,13 @@
       "detail": {
         "title": "Operator Work Shift"
       },
-      "location": "Location",
       "startDate": "Start Date",
       "endDate": "End Date",
+      "status": "Status",
       "device": "Device",
       "operator": "Operator",
-      "message": "Message"
+      "notification": "Notification",
+      "productionArea": "Production Area"
     }
   }
 }

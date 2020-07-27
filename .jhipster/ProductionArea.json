@@ -1,0 +1,29 @@
+{
+  "name": "ProductionArea",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "operatorWorkShift",
+      "otherEntityRelationshipName": "productionArea",
+      "relationshipName": "operatorWorkShift",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20200727121206",
+  "entityTableName": "production_area",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": ["ifm_simple_1"]
+}

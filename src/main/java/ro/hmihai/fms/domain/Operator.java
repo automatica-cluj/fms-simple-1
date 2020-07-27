@@ -22,9 +22,6 @@ public class Operator implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @Column(name = "external_id")
-    private String externalId;
-
     @Column(name = "name")
     private String name;
 
@@ -35,19 +32,6 @@ public class Operator implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getExternalId() {
-        return externalId;
-    }
-
-    public Operator externalId(String externalId) {
-        this.externalId = externalId;
-        return this;
-    }
-
-    public void setExternalId(String externalId) {
-        this.externalId = externalId;
     }
 
     public String getName() {
@@ -85,7 +69,6 @@ public class Operator implements Serializable {
     public String toString() {
         return "Operator{" +
             "id=" + getId() +
-            ", externalId='" + getExternalId() + "'" +
             ", name='" + getName() + "'" +
             "}";
     }

@@ -17,7 +17,6 @@ export class OperatorUpdateComponent implements OnInit {
 
   editForm = this.fb.group({
     id: [],
-    externalId: [],
     name: [],
   });
 
@@ -32,7 +31,6 @@ export class OperatorUpdateComponent implements OnInit {
   updateForm(operator: IOperator): void {
     this.editForm.patchValue({
       id: operator.id,
-      externalId: operator.externalId,
       name: operator.name,
     });
   }
@@ -55,7 +53,6 @@ export class OperatorUpdateComponent implements OnInit {
     return {
       ...new Operator(),
       id: this.editForm.get(['id'])!.value,
-      externalId: this.editForm.get(['externalId'])!.value,
       name: this.editForm.get(['name'])!.value,
     };
   }

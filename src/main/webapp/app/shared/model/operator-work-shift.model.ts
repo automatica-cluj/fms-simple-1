@@ -1,24 +1,28 @@
 import { Moment } from 'moment';
-import { IMessage } from 'app/shared/model/message.model';
+import { IOperatorNotification } from 'app/shared/model/operator-notification.model';
+import { IProductionArea } from 'app/shared/model/production-area.model';
+import { WorkShiftStatus } from 'app/shared/model/enumerations/work-shift-status.model';
 
 export interface IOperatorWorkShift {
   id?: number;
-  location?: string;
   startDate?: Moment;
   endDate?: Moment;
+  status?: WorkShiftStatus;
   deviceId?: number;
   operatorId?: number;
-  messages?: IMessage[];
+  notifications?: IOperatorNotification[];
+  productionAreas?: IProductionArea[];
 }
 
 export class OperatorWorkShift implements IOperatorWorkShift {
   constructor(
     public id?: number,
-    public location?: string,
     public startDate?: Moment,
     public endDate?: Moment,
+    public status?: WorkShiftStatus,
     public deviceId?: number,
     public operatorId?: number,
-    public messages?: IMessage[]
+    public notifications?: IOperatorNotification[],
+    public productionAreas?: IProductionArea[]
   ) {}
 }

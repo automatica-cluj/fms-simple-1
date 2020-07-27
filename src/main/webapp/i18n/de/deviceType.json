@@ -1,0 +1,10 @@
+{
+  "ifmSimple1App": {
+    "DeviceType": {
+      "null": "",
+      "TIZEN": "TIZEN",
+      "ANDROID": "ANDROID",
+      "IOS": "IOS"
+    }
+  }
+}
