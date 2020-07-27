@@ -1,0 +1,106 @@
+application {
+  config {
+    baseName ifm_simple_1
+    applicationType monolith
+    packageName ro.hmihai.fms
+    authenticationType jwt
+    buildTool maven
+    databaseType sql
+    devDatabaseType h2Disk
+    prodDatabaseType postgresql
+    cacheProvider ehcache
+    enableHibernateCache true
+    clientFramework angularX
+    useSass false
+    clientPackageManager npm
+    jhiPrefix bpf
+    enableTranslation true
+    nativeLanguage en
+    languages [en, de]
+    websocket spring-websocket
+    testFrameworks [protractor]
+  }
+  entities *
+}
+
+
+
+entity FactoryEvent{
+	subject String
+    body String
+    type EventType
+    createDate Instant
+    notificationCount Integer
+	nextNotificationDate Instant
+    processingStatus ProcessingStatus
+}
+
+enum EventType{
+	MACHINE_EVENT, USER_MESSAGE
+}
+
+enum ProcessingStatus{
+	NEW, WAIT_ACK, ACKNOWLEDGED, IGNORED_ALL, EXPIRED
+}
+
+entity Operator{
+    name String
+}
+
+entity ProductionArea{
+	name String 
+}
+
+entity OperatorWorkShift{
+	startDate Instant
+    endDate Instant
+    status WorkShiftStatus
+}
+
+enum WorkShiftStatus{
+	ACTIVE, ENDED
+}
+
+entity OperatorDevice{
+	name String
+	type DeviceType
+	registrationId String
+}
+
+enum DeviceType{
+	TIZEN, ANDROID, IOS
+}
+
+entity OperatorNotification{
+    receiveDate Instant
+    responseDate Instant
+    response NotificationResponse
+}
+
+enum NotificationResponse{
+	ACCEPT, REJECT, IGNORE
+}
+
+relationship OneToOne {
+	OperatorWorkShift{device required} to OperatorDevice
+    OperatorWorkShift{operator required} to Operator
+    FactoryEvent{productionArea required} to ProductionArea  
+}
+
+// defining multiple OneToMany relationships with comments
+relationship OneToMany {
+    OperatorWorkShift{notification} to OperatorNotification{operatorWorkShift}
+    FactoryEvent{notification} to OperatorNotification{factoryEvent}
+    OperatorWorkShift{productionArea} to ProductionArea{operatorWorkShift}
+}
+
+
+///////////////////////////////////////////////
+
+
+// Set pagination options
+paginate OperatorNotification with infinite-scroll
+paginate OperatorDevice, Operator, OperatorWorkShift, FactoryEvent with pagination
+
+service * with serviceImpl
+dto * with mapstruct
