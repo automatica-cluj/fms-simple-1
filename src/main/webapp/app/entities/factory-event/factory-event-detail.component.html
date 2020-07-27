@@ -1,0 +1,60 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="factoryEvent">
+            <h2><span jhiTranslate="ifmSimple1App.factoryEvent.detail.title">Factory Event</span> {{ factoryEvent.id }}</h2>
+
+            <hr>
+
+            <bpf-alert-error></bpf-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="ifmSimple1App.factoryEvent.subject">Subject</span></dt>
+                <dd>
+                    <span>{{ factoryEvent.subject }}</span>
+                </dd>
+                <dt><span jhiTranslate="ifmSimple1App.factoryEvent.body">Body</span></dt>
+                <dd>
+                    <span>{{ factoryEvent.body }}</span>
+                </dd>
+                <dt><span jhiTranslate="ifmSimple1App.factoryEvent.type">Type</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'ifmSimple1App.EventType.' + factoryEvent.type }}">{{ factoryEvent.type }}</span>
+                </dd>
+                <dt><span jhiTranslate="ifmSimple1App.factoryEvent.createDate">Create Date</span></dt>
+                <dd>
+                    <span>{{ factoryEvent.createDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="ifmSimple1App.factoryEvent.notificationCount">Notification Count</span></dt>
+                <dd>
+                    <span>{{ factoryEvent.notificationCount }}</span>
+                </dd>
+                <dt><span jhiTranslate="ifmSimple1App.factoryEvent.nextNotificationDate">Next Notification Date</span></dt>
+                <dd>
+                    <span>{{ factoryEvent.nextNotificationDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="ifmSimple1App.factoryEvent.processingStatus">Processing Status</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'ifmSimple1App.ProcessingStatus.' + factoryEvent.processingStatus }}">{{ factoryEvent.processingStatus }}</span>
+                </dd>
+                <dt><span jhiTranslate="ifmSimple1App.factoryEvent.productionArea">Production Area</span></dt>
+                <dd>
+                    <div *ngIf="factoryEvent.productionAreaId">
+                        <a [routerLink]="['/production-area', factoryEvent.productionAreaId, 'view']">{{ factoryEvent.productionAreaId }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/factory-event', factoryEvent.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

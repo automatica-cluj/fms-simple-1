@@ -1,0 +1,11 @@
+id;subject;body;type;create_date;notification_count;next_notification_date;processing_status;production_area_id
+1;Communications;Sao Tome and Principe Director;MACHINE_EVENT;2020-07-26T15:23:50;28969;2020-07-27T10:20:19;WAIT_ACK;1
+2;cross-platform transmitting Saint Martin;teal AGP implement;USER_MESSAGE;2020-07-27T00:59:18;78059;2020-07-26T22:50:37;IGNORED_ALL;2
+3;Steel;Lane Views;MACHINE_EVENT;2020-07-26T18:25:08;62697;2020-07-27T04:06:06;EXPIRED;3
+4;RAM;archive Decentralized cyan;MACHINE_EVENT;2020-07-26T22:00:07;82775;2020-07-26T12:24:04;WAIT_ACK;4
+5;Dynamic Practical Locks;Granite withdrawal;MACHINE_EVENT;2020-07-27T07:49:41;3217;2020-07-27T01:08:51;WAIT_ACK;5
+6;card interactive Jewelery;array;USER_MESSAGE;2020-07-26T17:51:49;66961;2020-07-26T18:35:36;ACKNOWLEDGED;6
+7;Persistent Virgin Islands, U.S. Slovakia (Slovak Republic);array;MACHINE_EVENT;2020-07-27T05:33:02;54833;2020-07-26T15:04:53;WAIT_ACK;7
+8;Personal Loan Account Team-oriented;Open-source PNG Investment Account;MACHINE_EVENT;2020-07-26T22:14:09;72841;2020-07-27T02:42:56;EXPIRED;8
+9;embrace relationships transitional;Incredible;USER_MESSAGE;2020-07-26T22:19:43;83252;2020-07-26T23:21:11;IGNORED_ALL;9
+10;panel iterate standardization;Kwacha;USER_MESSAGE;2020-07-26T21:35:39;43030;2020-07-26T15:12:20;EXPIRED;10

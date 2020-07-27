@@ -1,0 +1,91 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="bpf-factory-event-heading" jhiTranslate="ifmSimple1App.factoryEvent.home.createOrEditLabel">Create or edit a Factory Event</h2>
+
+            <div>
+                <bpf-alert-error></bpf-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ifmSimple1App.factoryEvent.subject" for="field_subject">Subject</label>
+                    <input type="text" class="form-control" name="subject" id="field_subject"
+                           formControlName="subject"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ifmSimple1App.factoryEvent.body" for="field_body">Body</label>
+                    <input type="text" class="form-control" name="body" id="field_body"
+                           formControlName="body"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ifmSimple1App.factoryEvent.type" for="field_type">Type</label>
+                    <select class="form-control" name="type" formControlName="type" id="field_type">
+                        <option value="MACHINE_EVENT">{{ 'ifmSimple1App.EventType.MACHINE_EVENT' | translate }}</option>
+                        <option value="USER_MESSAGE">{{ 'ifmSimple1App.EventType.USER_MESSAGE' | translate }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ifmSimple1App.factoryEvent.createDate" for="field_createDate">Create Date</label>
+                    <div class="d-flex">
+                        <input id="field_createDate" type="datetime-local" class="form-control" name="createDate" formControlName="createDate" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ifmSimple1App.factoryEvent.notificationCount" for="field_notificationCount">Notification Count</label>
+                    <input type="number" class="form-control" name="notificationCount" id="field_notificationCount"
+                           formControlName="notificationCount"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ifmSimple1App.factoryEvent.nextNotificationDate" for="field_nextNotificationDate">Next Notification Date</label>
+                    <div class="d-flex">
+                        <input id="field_nextNotificationDate" type="datetime-local" class="form-control" name="nextNotificationDate" formControlName="nextNotificationDate" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ifmSimple1App.factoryEvent.processingStatus" for="field_processingStatus">Processing Status</label>
+                    <select class="form-control" name="processingStatus" formControlName="processingStatus" id="field_processingStatus">
+                        <option value="NEW">{{ 'ifmSimple1App.ProcessingStatus.NEW' | translate }}</option>
+                        <option value="WAIT_ACK">{{ 'ifmSimple1App.ProcessingStatus.WAIT_ACK' | translate }}</option>
+                        <option value="ACKNOWLEDGED">{{ 'ifmSimple1App.ProcessingStatus.ACKNOWLEDGED' | translate }}</option>
+                        <option value="IGNORED_ALL">{{ 'ifmSimple1App.ProcessingStatus.IGNORED_ALL' | translate }}</option>
+                        <option value="EXPIRED">{{ 'ifmSimple1App.ProcessingStatus.EXPIRED' | translate }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ifmSimple1App.factoryEvent.productionArea" for="field_productionArea">Production Area</label>
+                    <select class="form-control" id="field_productionArea" name="productionArea" formControlName="productionAreaId">
+                        <option *ngIf="!editForm.get('productionAreaId')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="productionAreaOption.id" *ngFor="let productionAreaOption of productionareas; trackBy: trackById">{{ productionAreaOption.id }}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('productionAreaId')!.invalid && (editForm.get('productionAreaId')!.dirty || editForm.get('productionAreaId')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('productionAreaId')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

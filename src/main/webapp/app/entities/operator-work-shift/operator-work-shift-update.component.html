@@ -12,12 +12,6 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="ifmSimple1App.operatorWorkShift.location" for="field_location">Location</label>
-                    <input type="text" class="form-control" name="location" id="field_location"
-                           formControlName="location"/>
-                </div>
-
-                <div class="form-group">
                     <label class="form-control-label" jhiTranslate="ifmSimple1App.operatorWorkShift.startDate" for="field_startDate">Start Date</label>
                     <div class="d-flex">
                         <input id="field_startDate" type="datetime-local" class="form-control" name="startDate" formControlName="startDate" placeholder="YYYY-MM-DD HH:mm"/>
@@ -32,19 +26,39 @@
                 </div>
 
                 <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ifmSimple1App.operatorWorkShift.status" for="field_status">Status</label>
+                    <select class="form-control" name="status" formControlName="status" id="field_status">
+                        <option value="ACTIVE">{{ 'ifmSimple1App.WorkShiftStatus.ACTIVE' | translate }}</option>
+                        <option value="ENDED">{{ 'ifmSimple1App.WorkShiftStatus.ENDED' | translate }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
                     <label class="form-control-label" jhiTranslate="ifmSimple1App.operatorWorkShift.device" for="field_device">Device</label>
                     <select class="form-control" id="field_device" name="device" formControlName="deviceId">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="deviceOption.id" *ngFor="let deviceOption of devices; trackBy: trackById">{{ deviceOption.id }}</option>
+                        <option *ngIf="!editForm.get('deviceId')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="operatorDeviceOption.id" *ngFor="let operatorDeviceOption of devices; trackBy: trackById">{{ operatorDeviceOption.id }}</option>
                     </select>
+                </div>
+                <div *ngIf="editForm.get('deviceId')!.invalid && (editForm.get('deviceId')!.dirty || editForm.get('deviceId')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('deviceId')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
                 </div>
 
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="ifmSimple1App.operatorWorkShift.operator" for="field_operator">Operator</label>
                     <select class="form-control" id="field_operator" name="operator" formControlName="operatorId">
-                        <option [ngValue]="null"></option>
+                        <option *ngIf="!editForm.get('operatorId')!.value" [ngValue]="null" selected></option>
                         <option [ngValue]="operatorOption.id" *ngFor="let operatorOption of operators; trackBy: trackById">{{ operatorOption.id }}</option>
                     </select>
+                </div>
+                <div *ngIf="editForm.get('operatorId')!.invalid && (editForm.get('operatorId')!.dirty || editForm.get('operatorId')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('operatorId')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
                 </div>
             </div>
 

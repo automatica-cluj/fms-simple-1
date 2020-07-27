@@ -40,9 +40,8 @@ describe('Operator e2e test', () => {
 
     await operatorComponentsPage.clickOnCreateButton();
 
-    await promise.all([operatorUpdatePage.setExternalIdInput('externalId'), operatorUpdatePage.setNameInput('name')]);
+    await promise.all([operatorUpdatePage.setNameInput('name')]);
 
-    expect(await operatorUpdatePage.getExternalIdInput()).to.eq('externalId', 'Expected ExternalId value to be equals to externalId');
     expect(await operatorUpdatePage.getNameInput()).to.eq('name', 'Expected Name value to be equals to name');
 
     await operatorUpdatePage.save();

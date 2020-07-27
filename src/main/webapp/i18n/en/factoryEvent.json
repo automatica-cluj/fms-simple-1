@@ -1,0 +1,30 @@
+{
+  "ifmSimple1App": {
+    "factoryEvent": {
+      "home": {
+        "title": "Factory Events",
+        "createLabel": "Create a new Factory Event",
+        "createOrEditLabel": "Create or edit a Factory Event",
+        "notFound": "No Factory Events found"
+      },
+      "created": "A new Factory Event is created with identifier {{ param }}",
+      "updated": "A Factory Event is updated with identifier {{ param }}",
+      "deleted": "A Factory Event is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Factory Event {{ id }}?"
+      },
+      "detail": {
+        "title": "Factory Event"
+      },
+      "subject": "Subject",
+      "body": "Body",
+      "type": "Type",
+      "createDate": "Create Date",
+      "notificationCount": "Notification Count",
+      "nextNotificationDate": "Next Notification Date",
+      "processingStatus": "Processing Status",
+      "productionArea": "Production Area",
+      "notification": "Notification"
+    }
+  }
+}

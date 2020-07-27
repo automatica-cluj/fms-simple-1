@@ -32,9 +32,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WithMockUser
 public class OperatorResourceIT {
 
-    private static final String DEFAULT_EXTERNAL_ID = "AAAAAAAAAA";
-    private static final String UPDATED_EXTERNAL_ID = "BBBBBBBBBB";
-
     private static final String DEFAULT_NAME = "AAAAAAAAAA";
     private static final String UPDATED_NAME = "BBBBBBBBBB";
 
@@ -63,7 +60,6 @@ public class OperatorResourceIT {
      */
     public static Operator createEntity(EntityManager em) {
         Operator operator = new Operator()
-            .externalId(DEFAULT_EXTERNAL_ID)
             .name(DEFAULT_NAME);
         return operator;
     }
@@ -75,7 +71,6 @@ public class OperatorResourceIT {
      */
     public static Operator createUpdatedEntity(EntityManager em) {
         Operator operator = new Operator()
-            .externalId(UPDATED_EXTERNAL_ID)
             .name(UPDATED_NAME);
         return operator;
     }
@@ -100,7 +95,6 @@ public class OperatorResourceIT {
         List<Operator> operatorList = operatorRepository.findAll();
         assertThat(operatorList).hasSize(databaseSizeBeforeCreate + 1);
         Operator testOperator = operatorList.get(operatorList.size() - 1);
-        assertThat(testOperator.getExternalId()).isEqualTo(DEFAULT_EXTERNAL_ID);
         assertThat(testOperator.getName()).isEqualTo(DEFAULT_NAME);
     }
 
@@ -136,7 +130,6 @@ public class OperatorResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(operator.getId().intValue())))
-            .andExpect(jsonPath("$.[*].externalId").value(hasItem(DEFAULT_EXTERNAL_ID)))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)));
     }
     
@@ -151,7 +144,6 @@ public class OperatorResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(operator.getId().intValue()))
-            .andExpect(jsonPath("$.externalId").value(DEFAULT_EXTERNAL_ID))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME));
     }
     @Test
@@ -175,7 +167,6 @@ public class OperatorResourceIT {
         // Disconnect from session so that the updates on updatedOperator are not directly saved in db
         em.detach(updatedOperator);
         updatedOperator
-            .externalId(UPDATED_EXTERNAL_ID)
             .name(UPDATED_NAME);
         OperatorDTO operatorDTO = operatorMapper.toDto(updatedOperator);
 
@@ -188,7 +179,6 @@ public class OperatorResourceIT {
         List<Operator> operatorList = operatorRepository.findAll();
         assertThat(operatorList).hasSize(databaseSizeBeforeUpdate);
         Operator testOperator = operatorList.get(operatorList.size() - 1);
-        assertThat(testOperator.getExternalId()).isEqualTo(UPDATED_EXTERNAL_ID);
         assertThat(testOperator.getName()).isEqualTo(UPDATED_NAME);
     }
 

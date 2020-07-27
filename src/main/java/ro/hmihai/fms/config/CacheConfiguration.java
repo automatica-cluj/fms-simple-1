@@ -50,9 +50,15 @@ public class CacheConfiguration {
             createCache(cm, ro.hmihai.fms.domain.User.class.getName() + ".authorities");
             createCache(cm, ro.hmihai.fms.domain.Operator.class.getName());
             createCache(cm, ro.hmihai.fms.domain.OperatorWorkShift.class.getName());
-            createCache(cm, ro.hmihai.fms.domain.OperatorWorkShift.class.getName() + ".messages");
+            createCache(cm, ro.hmihai.fms.domain.OperatorWorkShift.class.getName() + ".notifications");
+            createCache(cm, ro.hmihai.fms.domain.OperatorWorkShift.class.getName() + ".productionAreas");
             createCache(cm, ro.hmihai.fms.domain.Device.class.getName());
             createCache(cm, ro.hmihai.fms.domain.Message.class.getName());
+            createCache(cm, ro.hmihai.fms.domain.FactoryEvent.class.getName());
+            createCache(cm, ro.hmihai.fms.domain.FactoryEvent.class.getName() + ".notifications");
+            createCache(cm, ro.hmihai.fms.domain.ProductionArea.class.getName());
+            createCache(cm, ro.hmihai.fms.domain.OperatorDevice.class.getName());
+            createCache(cm, ro.hmihai.fms.domain.OperatorNotification.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

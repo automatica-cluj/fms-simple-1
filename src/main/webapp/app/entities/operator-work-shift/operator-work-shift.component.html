@@ -23,9 +23,9 @@
             <thead>
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
                     <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="location"><span jhiTranslate="ifmSimple1App.operatorWorkShift.location">Location</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="startDate"><span jhiTranslate="ifmSimple1App.operatorWorkShift.startDate">Start Date</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="endDate"><span jhiTranslate="ifmSimple1App.operatorWorkShift.endDate">End Date</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="status"><span jhiTranslate="ifmSimple1App.operatorWorkShift.status">Status</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="deviceId"><span jhiTranslate="ifmSimple1App.operatorWorkShift.device">Device</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="operatorId"><span jhiTranslate="ifmSimple1App.operatorWorkShift.operator">Operator</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
@@ -34,12 +34,12 @@
             <tbody>
                 <tr *ngFor="let operatorWorkShift of operatorWorkShifts ;trackBy: trackId">
                     <td><a [routerLink]="['/operator-work-shift', operatorWorkShift.id, 'view']">{{ operatorWorkShift.id }}</a></td>
-                    <td>{{ operatorWorkShift.location }}</td>
                     <td>{{ operatorWorkShift.startDate | date:'medium' }}</td>
                     <td>{{ operatorWorkShift.endDate | date:'medium' }}</td>
+                    <td jhiTranslate="{{ 'ifmSimple1App.WorkShiftStatus.' + operatorWorkShift.status }}">{{ operatorWorkShift.status }}</td>
                     <td>
                         <div *ngIf="operatorWorkShift.deviceId">
-                            <a [routerLink]="['/device', operatorWorkShift.deviceId , 'view']" >{{ operatorWorkShift.deviceId }}</a>
+                            <a [routerLink]="['/operator-device', operatorWorkShift.deviceId , 'view']" >{{ operatorWorkShift.deviceId }}</a>
                         </div>
                     </td>
                     <td>

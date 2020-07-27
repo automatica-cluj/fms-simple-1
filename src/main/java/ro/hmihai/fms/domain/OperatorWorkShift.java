@@ -4,11 +4,14 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
+
+import ro.hmihai.fms.domain.enumeration.WorkShiftStatus;
 
 /**
  * A OperatorWorkShift.
@@ -25,26 +28,33 @@ public class OperatorWorkShift implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @Column(name = "location")
-    private String location;
-
     @Column(name = "start_date")
     private Instant startDate;
 
     @Column(name = "end_date")
     private Instant endDate;
 
-    @OneToOne
-    @JoinColumn(unique = true)
-    private Device device;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private WorkShiftStatus status;
 
-    @OneToOne
+    @OneToOne(optional = false)
+    @NotNull
+    @JoinColumn(unique = true)
+    private OperatorDevice device;
+
+    @OneToOne(optional = false)
+    @NotNull
     @JoinColumn(unique = true)
     private Operator operator;
 
     @OneToMany(mappedBy = "operatorWorkShift")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    private Set<Message> messages = new HashSet<>();
+    private Set<OperatorNotification> notifications = new HashSet<>();
+
+    @OneToMany(mappedBy = "operatorWorkShift")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    private Set<ProductionArea> productionAreas = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -53,19 +63,6 @@ public class OperatorWorkShift implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public OperatorWorkShift location(String location) {
-        this.location = location;
-        return this;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
     }
 
     public Instant getStartDate() {
@@ -94,17 +91,30 @@ public class OperatorWorkShift implements Serializable {
         this.endDate = endDate;
     }
 
-    public Device getDevice() {
-        return device;
+    public WorkShiftStatus getStatus() {
+        return status;
     }
 
-    public OperatorWorkShift device(Device device) {
-        this.device = device;
+    public OperatorWorkShift status(WorkShiftStatus status) {
+        this.status = status;
         return this;
     }
 
-    public void setDevice(Device device) {
-        this.device = device;
+    public void setStatus(WorkShiftStatus status) {
+        this.status = status;
+    }
+
+    public OperatorDevice getDevice() {
+        return device;
+    }
+
+    public OperatorWorkShift device(OperatorDevice operatorDevice) {
+        this.device = operatorDevice;
+        return this;
+    }
+
+    public void setDevice(OperatorDevice operatorDevice) {
+        this.device = operatorDevice;
     }
 
     public Operator getOperator() {
@@ -120,29 +130,54 @@ public class OperatorWorkShift implements Serializable {
         this.operator = operator;
     }
 
-    public Set<Message> getMessages() {
-        return messages;
+    public Set<OperatorNotification> getNotifications() {
+        return notifications;
     }
 
-    public OperatorWorkShift messages(Set<Message> messages) {
-        this.messages = messages;
+    public OperatorWorkShift notifications(Set<OperatorNotification> operatorNotifications) {
+        this.notifications = operatorNotifications;
         return this;
     }
 
-    public OperatorWorkShift addMessage(Message message) {
-        this.messages.add(message);
-        message.setOperatorWorkShift(this);
+    public OperatorWorkShift addNotification(OperatorNotification operatorNotification) {
+        this.notifications.add(operatorNotification);
+        operatorNotification.setOperatorWorkShift(this);
         return this;
     }
 
-    public OperatorWorkShift removeMessage(Message message) {
-        this.messages.remove(message);
-        message.setOperatorWorkShift(null);
+    public OperatorWorkShift removeNotification(OperatorNotification operatorNotification) {
+        this.notifications.remove(operatorNotification);
+        operatorNotification.setOperatorWorkShift(null);
         return this;
     }
 
-    public void setMessages(Set<Message> messages) {
-        this.messages = messages;
+    public void setNotifications(Set<OperatorNotification> operatorNotifications) {
+        this.notifications = operatorNotifications;
+    }
+
+    public Set<ProductionArea> getProductionAreas() {
+        return productionAreas;
+    }
+
+    public OperatorWorkShift productionAreas(Set<ProductionArea> productionAreas) {
+        this.productionAreas = productionAreas;
+        return this;
+    }
+
+    public OperatorWorkShift addProductionArea(ProductionArea productionArea) {
+        this.productionAreas.add(productionArea);
+        productionArea.setOperatorWorkShift(this);
+        return this;
+    }
+
+    public OperatorWorkShift removeProductionArea(ProductionArea productionArea) {
+        this.productionAreas.remove(productionArea);
+        productionArea.setOperatorWorkShift(null);
+        return this;
+    }
+
+    public void setProductionAreas(Set<ProductionArea> productionAreas) {
+        this.productionAreas = productionAreas;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
@@ -167,9 +202,9 @@ public class OperatorWorkShift implements Serializable {
     public String toString() {
         return "OperatorWorkShift{" +
             "id=" + getId() +
-            ", location='" + getLocation() + "'" +
             ", startDate='" + getStartDate() + "'" +
             ", endDate='" + getEndDate() + "'" +
+            ", status='" + getStatus() + "'" +
             "}";
     }
 }

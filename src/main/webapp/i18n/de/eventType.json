@@ -1,0 +1,9 @@
+{
+  "ifmSimple1App": {
+    "EventType": {
+      "null": "",
+      "MACHINE_EVENT": "MACHINE_EVENT",
+      "USER_MESSAGE": "USER_MESSAGE"
+    }
+  }
+}

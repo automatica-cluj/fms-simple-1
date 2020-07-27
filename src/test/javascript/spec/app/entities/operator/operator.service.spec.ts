@@ -20,7 +20,7 @@ describe('Service Tests', () => {
       service = injector.get(OperatorService);
       httpMock = injector.get(HttpTestingController);
 
-      elemDefault = new Operator(0, 'AAAAAAA', 'AAAAAAA');
+      elemDefault = new Operator(0, 'AAAAAAA');
     });
 
     describe('Service methods', () => {
@@ -54,7 +54,6 @@ describe('Service Tests', () => {
       it('should update a Operator', () => {
         const returnedFromService = Object.assign(
           {
-            externalId: 'BBBBBB',
             name: 'BBBBBB',
           },
           elemDefault
@@ -72,7 +71,6 @@ describe('Service Tests', () => {
       it('should return a list of Operator', () => {
         const returnedFromService = Object.assign(
           {
-            externalId: 'BBBBBB',
             name: 'BBBBBB',
           },
           elemDefault

@@ -1,0 +1,10 @@
+{
+  "ifmSimple1App": {
+    "NotificationResponse": {
+      "null": "",
+      "ACCEPT": "ACCEPT",
+      "REJECT": "REJECT",
+      "IGNORE": "IGNORE"
+    }
+  }
+}

@@ -18,9 +18,16 @@
     <include file="config/liquibase/changelog/20200719202624_added_entity_OperatorWorkShift.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200719202724_added_entity_Device.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200719202824_added_entity_Message.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200727121006_added_entity_FactoryEvent.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200727121206_added_entity_ProductionArea.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200727121406_added_entity_OperatorDevice.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200727121506_added_entity_OperatorNotification.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20200719202624_added_entity_constraints_OperatorWorkShift.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200719202824_added_entity_constraints_Message.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200727121006_added_entity_constraints_FactoryEvent.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200727121206_added_entity_constraints_ProductionArea.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200727121506_added_entity_constraints_OperatorNotification.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->
 </databaseChangeLog>

@@ -2,10 +2,6 @@
   "name": "Operator",
   "fields": [
     {
-      "fieldName": "externalId",
-      "fieldType": "String"
-    },
-    {
       "fieldName": "name",
       "fieldType": "String"
     }

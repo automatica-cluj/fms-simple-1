@@ -11,6 +11,10 @@
         "operatorWorkShift": "Operator Work Shift",
         "device": "Device",
         "message": "Message",
+        "factoryEvent": "Factory Event",
+        "productionArea": "Production Area",
+        "operatorDevice": "Operator Device",
+        "operatorNotification": "Operator Notification",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

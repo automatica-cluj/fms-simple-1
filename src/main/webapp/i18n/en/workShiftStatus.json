@@ -1,0 +1,9 @@
+{
+  "ifmSimple1App": {
+    "WorkShiftStatus": {
+      "null": "",
+      "ACTIVE": "ACTIVE",
+      "ENDED": "ENDED"
+    }
+  }
+}

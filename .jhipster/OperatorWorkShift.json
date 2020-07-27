@@ -2,23 +2,25 @@
   "name": "OperatorWorkShift",
   "fields": [
     {
-      "fieldName": "location",
-      "fieldType": "String"
-    },
-    {
       "fieldName": "startDate",
       "fieldType": "Instant"
     },
     {
       "fieldName": "endDate",
       "fieldType": "Instant"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "WorkShiftStatus",
+      "fieldValues": "ACTIVE,ENDED"
     }
   ],
   "relationships": [
     {
       "relationshipType": "one-to-one",
-      "otherEntityName": "device",
+      "otherEntityName": "operatorDevice",
       "otherEntityRelationshipName": "operatorWorkShift",
+      "relationshipValidateRules": "required",
       "relationshipName": "device",
       "otherEntityField": "id",
       "ownerSide": true
@@ -27,15 +29,22 @@
       "relationshipType": "one-to-one",
       "otherEntityName": "operator",
       "otherEntityRelationshipName": "operatorWorkShift",
+      "relationshipValidateRules": "required",
       "relationshipName": "operator",
       "otherEntityField": "id",
       "ownerSide": true
     },
     {
       "relationshipType": "one-to-many",
-      "otherEntityName": "message",
+      "otherEntityName": "operatorNotification",
       "otherEntityRelationshipName": "operatorWorkShift",
-      "relationshipName": "message"
+      "relationshipName": "notification"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "productionArea",
+      "otherEntityRelationshipName": "operatorWorkShift",
+      "relationshipName": "productionArea"
     }
   ],
   "changelogDate": "20200719202624",

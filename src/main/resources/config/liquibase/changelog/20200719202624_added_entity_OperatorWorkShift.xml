@@ -15,20 +15,20 @@
             <column name="id" type="bigint">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="location" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
             <column name="start_date" type="datetime">
                 <constraints nullable="true" />
             </column>
             <column name="end_date" type="datetime">
                 <constraints nullable="true" />
             </column>
+            <column name="status" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
             <column name="device_id" type="bigint">
-                <constraints unique="true" nullable="true" uniqueConstraintName="ux_operator_work_shift_device_id" />
+                <constraints unique="true" nullable="false" uniqueConstraintName="ux_operator_work_shift_device_id" />
             </column>
             <column name="operator_id" type="bigint">
-                <constraints unique="true" nullable="true" uniqueConstraintName="ux_operator_work_shift_operator_id" />
+                <constraints unique="true" nullable="false" uniqueConstraintName="ux_operator_work_shift_operator_id" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
@@ -55,9 +55,11 @@
                   separator=";"
                   tableName="operator_work_shift">
             <column name="id" type="numeric"/>
-            <column name="location" type="string"/>
             <column name="start_date" type="datetime"/>
             <column name="end_date" type="datetime"/>
+            <column name="status" type="string"/>
+            <column name="device_id" type="numeric"/>
+            <column name="operator_id" type="numeric"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>

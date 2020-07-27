@@ -1,0 +1,24 @@
+{
+  "ifmSimple1App": {
+    "operatorDevice": {
+      "home": {
+        "title": "Operator Devices",
+        "createLabel": "Create a new Operator Device",
+        "createOrEditLabel": "Create or edit a Operator Device",
+        "notFound": "No Operator Devices found"
+      },
+      "created": "A new Operator Device is created with identifier {{ param }}",
+      "updated": "A Operator Device is updated with identifier {{ param }}",
+      "deleted": "A Operator Device is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Operator Device {{ id }}?"
+      },
+      "detail": {
+        "title": "Operator Device"
+      },
+      "name": "Name",
+      "type": "Type",
+      "registrationId": "Registration Id"
+    }
+  }
+}

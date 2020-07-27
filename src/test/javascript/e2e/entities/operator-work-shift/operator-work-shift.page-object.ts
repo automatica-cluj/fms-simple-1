@@ -29,23 +29,15 @@ export class OperatorWorkShiftUpdatePage {
   saveButton = element(by.id('save-entity'));
   cancelButton = element(by.id('cancel-save'));
 
-  locationInput = element(by.id('field_location'));
   startDateInput = element(by.id('field_startDate'));
   endDateInput = element(by.id('field_endDate'));
+  statusSelect = element(by.id('field_status'));
 
   deviceSelect = element(by.id('field_device'));
   operatorSelect = element(by.id('field_operator'));
 
   async getPageTitle(): Promise<string> {
     return this.pageTitle.getAttribute('jhiTranslate');
-  }
-
-  async setLocationInput(location: string): Promise<void> {
-    await this.locationInput.sendKeys(location);
-  }
-
-  async getLocationInput(): Promise<string> {
-    return await this.locationInput.getAttribute('value');
   }
 
   async setStartDateInput(startDate: string): Promise<void> {
@@ -62,6 +54,18 @@ export class OperatorWorkShiftUpdatePage {
 
   async getEndDateInput(): Promise<string> {
     return await this.endDateInput.getAttribute('value');
+  }
+
+  async setStatusSelect(status: string): Promise<void> {
+    await this.statusSelect.sendKeys(status);
+  }
+
+  async getStatusSelect(): Promise<string> {
+    return await this.statusSelect.element(by.css('option:checked')).getText();
+  }
+
+  async statusSelectLastOption(): Promise<void> {
+    await this.statusSelect.all(by.tagName('option')).last().click();
   }
 
   async deviceSelectLastOption(): Promise<void> {

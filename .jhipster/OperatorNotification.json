@@ -1,0 +1,45 @@
+{
+  "name": "OperatorNotification",
+  "fields": [
+    {
+      "fieldName": "receiveDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "responseDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "operatorResponse",
+      "fieldType": "NotificationResponse",
+      "fieldValues": "ACCEPT,REJECT,IGNORE"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "operatorWorkShift",
+      "otherEntityRelationshipName": "notification",
+      "relationshipName": "operatorWorkShift",
+      "otherEntityField": "id"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "factoryEvent",
+      "otherEntityRelationshipName": "notification",
+      "relationshipName": "factoryEvent",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20200727121506",
+  "entityTableName": "operator_notification",
+  "dto": "mapstruct",
+  "pagination": "infinite-scroll",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": ["ifm_simple_1"]
+}

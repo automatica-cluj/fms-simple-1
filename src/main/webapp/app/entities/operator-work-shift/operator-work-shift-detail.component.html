@@ -8,10 +8,6 @@
             <bpf-alert-error></bpf-alert-error>
 
             <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="ifmSimple1App.operatorWorkShift.location">Location</span></dt>
-                <dd>
-                    <span>{{ operatorWorkShift.location }}</span>
-                </dd>
                 <dt><span jhiTranslate="ifmSimple1App.operatorWorkShift.startDate">Start Date</span></dt>
                 <dd>
                     <span>{{ operatorWorkShift.startDate }}</span>
@@ -20,10 +16,14 @@
                 <dd>
                     <span>{{ operatorWorkShift.endDate }}</span>
                 </dd>
+                <dt><span jhiTranslate="ifmSimple1App.operatorWorkShift.status">Status</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'ifmSimple1App.WorkShiftStatus.' + operatorWorkShift.status }}">{{ operatorWorkShift.status }}</span>
+                </dd>
                 <dt><span jhiTranslate="ifmSimple1App.operatorWorkShift.device">Device</span></dt>
                 <dd>
                     <div *ngIf="operatorWorkShift.deviceId">
-                        <a [routerLink]="['/device', operatorWorkShift.deviceId, 'view']">{{ operatorWorkShift.deviceId }}</a>
+                        <a [routerLink]="['/operator-device', operatorWorkShift.deviceId, 'view']">{{ operatorWorkShift.deviceId }}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="ifmSimple1App.operatorWorkShift.operator">Operator</span></dt>

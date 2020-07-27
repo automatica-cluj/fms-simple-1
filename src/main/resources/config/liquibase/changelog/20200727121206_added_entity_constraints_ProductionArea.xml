@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <!--
+        Added the constraints for entity ProductionArea.
+    -->
+    <changeSet id="20200727121206-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="operator_work_shift_id"
+                                 baseTableName="production_area"
+                                 constraintName="fk_production_area_operator_work_shift_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="operator_work_shift"/>
+
+    </changeSet>
+</databaseChangeLog>
